@@ -18,5 +18,17 @@
   "bugs": {
     "url": "https://github.com/sjmarshy/solve-sudoku/issues"
   },
-  "homepage": "https://github.com/sjmarshy/solve-sudoku"
+  "homepage": "https://github.com/sjmarshy/solve-sudoku",
+  "eslintConfig": {
+    "env": {
+      "node": true
+    },
+    "ecmaFeatures": {
+      "blockBindings": true
+    }
+  },
+  "devDependencies": {
+    "chai": "^2.1.0",
+    "mocha": "^2.1.0"
+  }
 }
