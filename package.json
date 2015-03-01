@@ -1,0 +1,22 @@
+{
+  "name": "solve-sudoku",
+  "version": "1.0.0",
+  "description": "solve sudoku",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sjmarshy/solve-sudoku"
+  },
+  "keywords": [
+    "sudoku"
+  ],
+  "author": "Sam Marshall",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sjmarshy/solve-sudoku/issues"
+  },
+  "homepage": "https://github.com/sjmarshy/solve-sudoku"
+}
