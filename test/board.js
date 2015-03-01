@@ -1,6 +1,6 @@
 "use strict";
 
-var expect = require("chai");
+var expect = require("chai").expect;
 var b = require("../src/board.js");
 
 var testBoard = [
@@ -21,6 +21,13 @@ describe("Sudoku Board", function() {
 
     before(function() {
         board = b.create(testBoard);
+    });
+
+    it("should give us a board object", function() {
+
+        return expect(board).to.exist &&
+            expect(board).to.have.property("cells");
+
     });
 
     it("should give us steps to solve", function() {
@@ -60,7 +67,7 @@ describe("Sudoku Board", function() {
 
         let solved = b.solve(board);
 
-        return expect(b.valid(solved)).to.be.true;
+        return expect(b.isValid(solved)).to.be.true;
     });
 
     it("should provide a checker", function() {
