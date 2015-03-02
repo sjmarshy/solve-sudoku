@@ -23,6 +23,24 @@ describe("Sudoku Board", function() {
         board = b.create(testBoard);
     });
 
+    describe("addNotes", function() {
+
+        it("should add notes to the board", function() {
+
+            let notedBoard = b.addNotes(board);
+
+            /*
+            console.log(inspect(notedBoard, {
+                depth: null
+            }));
+            */
+
+        });
+
+
+    });
+
+
     it("should give us a board object", function() {
 
         return expect(board).to.exist &&

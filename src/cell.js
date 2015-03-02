@@ -1,6 +1,6 @@
 "use strict";
 
-var assign = require("object.assign");
+var deepcopy = require("deepcopy");
 
 function isValueValid(act) {
 
@@ -23,7 +23,7 @@ function isCellValid(cell) {
 function initPossible(cell) {
 
     let ps = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    let newCell = assign({}, cell);
+    let newCell = deepcopy(cell);
 
     newCell.possible = {};
 
@@ -40,9 +40,9 @@ function setPossible(cell, possible, value) {
         value = true;
     }
 
-    let newCell = assign({}, cell);
+    let newCell = deepcopy(cell);
 
-    if (!cell.hasOwnProperty("possible")) {
+    if (!newCell.hasOwnProperty("possible")) {
         newCell = initPossible(newCell);
     }
 
@@ -55,16 +55,35 @@ function setPossible(cell, possible, value) {
         });
 
     } else {
-        newCell.possible[possible] = value;
+        newCell.possible[possible.toString()] = value;
     }
 
     return newCell;
 
 }
 
+function togglePossible(cell, possible) {
+
+    let newCell = deepcopy(cell);
+
+    if (Array.isArray(possible)) {
+        possible.forEach(function(p) {
+            newCell.possible[p] = !newCell.possible[p];
+        });
+    } else {
+        newCell.possible[possible] = !newCell.possible[possible];
+    }
+
+    return newCell;
+}
+
+function isPossible(cell, possible) {
+    return cell.possible[possible];
+}
+
 function setValue(cell, value) {
 
-    let newCell = assign({}, cell);
+    let newCell = deepcopy(cell);
 
     if (isValueValid(value) && isCellValid(newCell)) {
         newCell.value = value;
@@ -88,5 +107,7 @@ function makeCell(value, possible) {
 module.exports = {
     makeCell: makeCell,
     setPossible: setPossible,
-    setValue: setValue
+    setValue: setValue,
+    togglePossible: togglePossible,
+    isPossible: isPossible
 };

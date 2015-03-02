@@ -79,7 +79,7 @@ describe("cell", function() {
 
     it("should be able to mark possible values with an array", function() {
 
-        let mark = [1, 2, 3];
+        const mark = [1, 2, 3];
 
         let origCell = c.makeCell();
         let markedCell = c.setPossible(origCell, mark);
@@ -97,7 +97,7 @@ describe("cell", function() {
         let mark = 4;
 
         let origCell = c.makeCell();
-        let markedCell = c.setPossible(markedCell, mark);
+        let markedCell = c.setPossible(origCell, mark);
 
         expect(origCell.possible[mark]).to.equal(false);
         expect(markedCell.possible[mark]).to.equal(true);
@@ -115,10 +115,10 @@ describe("cell", function() {
 
         for (let prop in mp) {
             switch (prop) {
-                case 1:
-                case 2:
-                case 4:
-                case 5:
+                case "1":
+                case "2":
+                case "4":
+                case "5":
                     expect(mp[prop]).to.equal(true);
                     break;
                 default:
