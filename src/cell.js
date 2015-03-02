@@ -4,7 +4,7 @@ var deepcopy = require("deepcopy");
 
 function isValueValid(act) {
 
-    if (!act) {
+    if (!act || act === undefined) {
         return false;
     }
 
@@ -55,11 +55,10 @@ function setPossible(cell, possible, value) {
         });
 
     } else {
-        newCell.possible[possible.toString()] = value;
+        newCell.possible[possible] = value;
     }
 
     return newCell;
-
 }
 
 function togglePossible(cell, possible) {
@@ -98,7 +97,7 @@ function makeCell(value, possible) {
         value: isValueValid(value) ? value : null
     };
 
-    let fullCell = setPossible(baseCell, possible);
+    let fullCell = setPossible(baseCell, possible || null);
 
     return fullCell;
 }

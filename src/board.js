@@ -45,12 +45,54 @@ function addNotes(b) {
         });
     });
 
-    console.log("finally");
-    console.dir(board, {
-        depth: null
-    });
-
     return board;
+}
+
+function setUniqueAsActual(board) {
+
+    // check for numbers that aren't possible in any space.
+
+    board.cells.forEach(function(rw, y) {
+        rw.forEach(function(cell, x) {
+
+            // exclude the one we're looking at now
+            let r = new Set(row.getPossibles(board, y).filter(function(p) {
+                return !(p.x === x && p.y === y);
+            }).map(function(p) {
+                return p.value;
+            }));; // TODO
+
+            let cl = new Set(col.getPossibles(board, x).filter(function(p) {
+                return !(p.x === x && p.y === y);
+            }).map(function(p) {
+                return p.value;
+            })); // TODO
+            let n = new Set(ninth.getPossibles(board, x, y).filter(function(p) {
+                return !(p.x === x && p.y === y);
+            }).map(function(p) {
+                return p.value;
+            })); // TODO
+
+            // get the possible numbers for this cell
+            let possible = [];
+            for (let val in cell.possible) {
+                if (cell.possible[val]) {
+                    possible.push(val);
+                }
+            }
+
+            possible.forEach(function(p) {
+
+                if (!r.has(p) &&
+                    !cl.has(p) &&
+                    !n.has(p)) {
+
+                    c.setValue(cell, p, true);
+                }
+
+            });
+        });
+    });
 }
 
 

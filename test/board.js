@@ -29,15 +29,8 @@ describe("Sudoku Board", function() {
 
             let notedBoard = b.addNotes(board);
 
-            /*
-            console.log(inspect(notedBoard, {
-                depth: null
-            }));
-            */
-
+            expect(notedBoard.cells[0][0].possible["6"]).to.equal(true);
         });
-
-
     });
 
 
