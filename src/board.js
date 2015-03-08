@@ -60,7 +60,7 @@ function setUniqueAsActual(board) {
                 return !(p.x === x && p.y === y);
             }).map(function(p) {
                 return p.value;
-            }));; // TODO
+            })); // TODO
 
             let cl = new Set(col.getPossibles(board, x).filter(function(p) {
                 return !(p.x === x && p.y === y);
@@ -93,6 +93,38 @@ function setUniqueAsActual(board) {
             });
         });
     });
+}
+
+function hasEmptyCells(board) {
+
+    let emptyCells = false;
+
+    board.cells.forEach(function(r) {
+        r.forEach(function(cell) {
+
+            if (!cell.value) {
+                emptyCells = true;
+            }
+        });
+    });
+
+    return emptyCells;
+}
+
+function isValid(board) {
+    // here we check that each row, column and ninth contains one of each 1..9
+    // and has no duplicates
+    //
+    let rows = row.getAll(board); // TODO
+    let cols = col.getAll(board); // TODO
+    let ninths = ninth.getAll(board); // TODO
+}
+
+function isSolved(board) {
+    // we check if a board is solved by checking first if it has any empty
+    // squares - if it does, it can't be complete - and then by checking if the
+    // board is valid.
+    return !hasEmptyCells(board) && isValid(board);
 }
 
 
